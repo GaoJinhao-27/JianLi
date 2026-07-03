@@ -1,4 +1,5 @@
 import type { ResumeDocument } from '../../types/resume';
+import { formatBaseInfoItems } from './baseInfoFormat';
 import { ResumeAvatar } from './ResumeAvatar';
 import { ResumeSection } from './ResumeSection';
 import { TemplateBody } from './TemplateBody';
@@ -10,10 +11,10 @@ export function ResumeTemplateClassic({ resume }: { resume: ResumeDocument }) {
         <div className="flex-1 text-center">
           <h1 className="text-[27px] font-bold tracking-normal text-gray-950">{resume.baseInfo.name || resume.name}</h1>
           <p className="mt-2 text-[13px] text-gray-700">
-            {[resume.baseInfo.phone, resume.baseInfo.email, resume.baseInfo.location, resume.baseInfo.targetJob || resume.targetJob].filter(Boolean).join(' | ')}
+            {formatBaseInfoItems(resume.baseInfo, resume.targetJob, ['phone', 'email', 'location', 'targetJob']).join(' | ')}
           </p>
           <p className="mt-1 text-[13px] text-gray-700">{[resume.baseInfo.school, resume.baseInfo.major, resume.baseInfo.degree, resume.baseInfo.majorRank && `专业排名: ${resume.baseInfo.majorRank}`].filter(Boolean).join(' | ')}</p>
-          <p className="mt-1 text-[13px] text-gray-700">{[resume.baseInfo.github, resume.baseInfo.gitee, resume.baseInfo.blog].filter(Boolean).join(' | ')}</p>
+          <p className="mt-1 text-[13px] text-gray-700">{formatBaseInfoItems(resume.baseInfo, resume.targetJob, ['github', 'gitee', 'blog', 'wechat']).join(' | ')}</p>
         </div>
         <ResumeAvatar resume={resume} />
       </header>

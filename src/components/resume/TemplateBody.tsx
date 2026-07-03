@@ -167,7 +167,7 @@ function renderSection(resume: ResumeDocument, module: ResumeModule) {
                 </LabeledLine>
               )}
               <LabeledText label="项目背景" text={project.background} />
-              <LabeledText label="项目职责" text={project.description} />
+              <LabeledText label="项目内容" text={project.description} />
               {project.highlights?.filter(Boolean).length ? <p className="font-semibold">项目成果:</p> : null}
               <Bullets items={project.highlights} />
             </div>

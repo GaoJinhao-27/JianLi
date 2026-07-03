@@ -37,7 +37,7 @@ export function ProjectEditor({ value, onChange }: { value: ProjectItem[]; onCha
           </div>
           <div className="mt-4">
             <Textarea
-              label="项目职责 / 内容"
+              label="项目内容"
               value={item.description ?? ''}
               placeholder="按行写你的具体工作；可用 **重点内容** 加粗，右侧会保留换行"
               onChange={(event) => update(item.id, { description: event.target.value })}

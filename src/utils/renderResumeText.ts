@@ -1,4 +1,5 @@
 import type { ExperienceItem, ResumeDocument, ResumeModule } from '../types/resume';
+import { formatBaseInfoItems } from '../components/resume/baseInfoFormat';
 
 const line = (value?: string) => (value?.trim() ? value.trim() : '');
 
@@ -33,7 +34,7 @@ function renderModule(resume: ResumeDocument, module: ResumeModule) {
             [
               [project.name, project.role, project.techStack].filter(Boolean).join(' | '),
               project.background ? `项目背景: ${project.background}` : '',
-              project.description,
+              project.description ? `项目内容: ${project.description}` : '',
               renderBullets(project.highlights),
             ]
               .filter(Boolean)
@@ -87,9 +88,9 @@ export function renderResumeText(resume: ResumeDocument) {
   const base = resume.baseInfo;
   const header = [
     line(base.name) || resume.name,
-    [base.phone, base.email, base.location, base.targetJob || resume.targetJob].filter(Boolean).join(' | '),
+    formatBaseInfoItems(base, resume.targetJob, ['phone', 'email', 'location', 'targetJob']).join(' | '),
     [base.school, base.major, base.degree, base.majorRank ? `专业排名: ${base.majorRank}` : ''].filter(Boolean).join(' | '),
-    [base.github, base.gitee, base.blog, base.wechat ? `微信: ${base.wechat}` : ''].filter(Boolean).join(' | '),
+    formatBaseInfoItems(base, resume.targetJob, ['github', 'gitee', 'blog', 'wechat']).join(' | '),
   ]
     .filter(Boolean)
     .join('\n');

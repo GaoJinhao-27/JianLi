@@ -1,4 +1,5 @@
 import type { ResumeDocument } from '../../types/resume';
+import { formatBaseInfoItems } from './baseInfoFormat';
 import { ResumeAvatar } from './ResumeAvatar';
 import { ResumeSection } from './ResumeSection';
 import { TemplateBody } from './TemplateBody';
@@ -15,7 +16,7 @@ export function ResumeTemplateTech({ resume }: { resume: ResumeDocument }) {
           </div>
           <div className="flex items-start gap-4">
             <p className="max-w-[82mm] text-right text-[13px] leading-5 text-gray-700">
-              {[resume.baseInfo.phone, resume.baseInfo.email, resume.baseInfo.location, resume.baseInfo.github].filter(Boolean).join(' | ')}
+              {formatBaseInfoItems(resume.baseInfo, resume.targetJob, ['phone', 'email', 'location', 'github']).join(' | ')}
             </p>
             <ResumeAvatar resume={resume} />
           </div>

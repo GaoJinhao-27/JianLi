@@ -1,17 +1,11 @@
 import type { ResumeDocument } from '../../types/resume';
+import { formatBaseInfoItems } from './baseInfoFormat';
 import { ResumeAvatar } from './ResumeAvatar';
 import { ResumeSection } from './ResumeSection';
 import { TemplateBody } from './TemplateBody';
 
 export function ResumeTemplateViral({ resume }: { resume: ResumeDocument }) {
-  const infoLine = [
-    resume.baseInfo.phone,
-    resume.baseInfo.wechat && `微信: ${resume.baseInfo.wechat}`,
-    resume.baseInfo.email,
-    resume.baseInfo.location,
-  ]
-    .filter(Boolean)
-    .join('  |  ');
+  const infoLine = formatBaseInfoItems(resume.baseInfo, resume.targetJob, ['phone', 'wechat', 'email', 'location']).join('  |  ');
 
   return (
     <div className="resume-paper px-[11mm] py-[9mm]">
@@ -20,7 +14,7 @@ export function ResumeTemplateViral({ resume }: { resume: ResumeDocument }) {
           <h1 className="text-[22px] font-bold leading-none text-gray-950">{resume.baseInfo.name || resume.name}</h1>
           <p className="mt-1 text-[11.5px] font-semibold text-gray-900">{[resume.baseInfo.targetJob || resume.targetJob, resume.baseInfo.school, resume.baseInfo.major, resume.baseInfo.degree].filter(Boolean).join(' | ')}</p>
           <p className="mt-1 text-[11px] leading-[1.35] text-gray-700">{infoLine}</p>
-          <p className="mt-0.5 text-[11px] leading-[1.35] text-gray-700">{[resume.baseInfo.majorRank && `专业排名: ${resume.baseInfo.majorRank}`, resume.baseInfo.github, resume.baseInfo.blog].filter(Boolean).join(' | ')}</p>
+          <p className="mt-0.5 text-[11px] leading-[1.35] text-gray-700">{[resume.baseInfo.majorRank && `专业排名: ${resume.baseInfo.majorRank}`, ...formatBaseInfoItems(resume.baseInfo, resume.targetJob, ['github', 'blog'])].filter(Boolean).join(' | ')}</p>
         </div>
         <ResumeAvatar resume={resume} className="h-[24mm] w-[19mm]" />
       </header>
