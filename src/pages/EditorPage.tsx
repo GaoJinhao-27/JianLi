@@ -230,7 +230,7 @@ export function EditorPage() {
           <Textarea
             className="min-h-72"
             value={importText}
-            placeholder={'示例：\n高晋浩\n13103066752 | 13103066752@163.com\n大连科技学院 | 数据科学与大数据专业 | 本科 | 专业排名: 7/73\n\n职业技能\nPython开发: Pandas、Requests、Selenium、Playwright\n\n实习经历\n光擎科技 | 数据处理实习生 | 2025.11 - 2026.01\n1. 针对算法训练数据需求，编写 Python 脚本完成清洗与整理'}
+            placeholder={'示例：\n示例同学\n手机: 13800000000 | 邮箱: demo@example.com\n某某大学 | 数据科学与大数据专业 | 本科 | 专业排名: 前 20%\n\n职业技能\nPython开发: Pandas、Requests、Selenium、Playwright\n\n项目经历\n数据分析 Dashboard | 数据分析实习生 | Python, Pandas\n项目背景: 用于集中查看业务数据指标和异常情况。\n项目内容: 负责数据清洗、指标计算和可视化看板搭建。\n项目成果: 提升日报整理效率，减少手工统计时间。\n\n实习经历\n某科技公司 | 数据处理实习生 | 2025.11 - 2026.01\n1. 针对业务数据整理需求，编写 Python 脚本完成清洗与汇总'}
             onChange={(event) => setImportText(event.target.value)}
           />
           <label className={`inline-flex h-9 cursor-pointer items-center justify-center rounded-md border border-line bg-white px-3 text-sm font-medium text-ink transition hover:bg-gray-50 ${importingFile ? 'pointer-events-none opacity-60' : ''}`}>
