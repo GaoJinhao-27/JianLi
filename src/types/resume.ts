@@ -112,6 +112,7 @@ export type ProjectItem = {
   startDate?: string;
   endDate?: string;
   techStack?: string;
+  background?: string;
   description?: string;
   highlights: string[];
 };

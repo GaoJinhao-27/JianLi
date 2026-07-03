@@ -28,14 +28,27 @@ export function ProjectEditor({ value, onChange }: { value: ProjectItem[]; onCha
             <Input label="技术栈" value={item.techStack ?? ''} onChange={(event) => update(item.id, { techStack: event.target.value })} />
           </div>
           <div className="mt-4">
-            <Textarea label="项目内容" value={item.description ?? ''} placeholder="概括项目目标、业务场景、你的职责；可用 **重点内容** 加粗" onChange={(event) => update(item.id, { description: event.target.value })} />
+            <Textarea
+              label="项目背景"
+              value={item.background ?? ''}
+              placeholder="说明项目为什么要做、服务什么业务场景、要解决什么问题"
+              onChange={(event) => update(item.id, { background: event.target.value })}
+            />
+          </div>
+          <div className="mt-4">
+            <Textarea
+              label="项目职责 / 内容"
+              value={item.description ?? ''}
+              placeholder="按行写你的具体工作；可用 **重点内容** 加粗，右侧会保留换行"
+              onChange={(event) => update(item.id, { description: event.target.value })}
+            />
           </div>
           <div className="mt-4">
             <BulletListEditor label="项目成果 / 亮点" items={item.highlights} placeholder="建议写量化结果，例如：提升效率 30%、覆盖 1000+ 条数据" onChange={(highlights) => update(item.id, { highlights })} />
           </div>
         </div>
       ))}
-      <Button icon={<Plus size={16} />} onClick={() => onChange([...value, { id: createId('project'), name: '', description: '', highlights: [''] }])}>
+      <Button icon={<Plus size={16} />} onClick={() => onChange([...value, { id: createId('project'), name: '', background: '', description: '', highlights: [''] }])}>
         添加项目
       </Button>
     </div>

@@ -32,6 +32,7 @@ function renderModule(resume: ResumeDocument, module: ResumeModule) {
           .map((project) =>
             [
               [project.name, project.role, project.techStack].filter(Boolean).join(' | '),
+              project.background ? `项目背景: ${project.background}` : '',
               project.description,
               renderBullets(project.highlights),
             ]

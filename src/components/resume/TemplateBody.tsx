@@ -43,6 +43,24 @@ function LabeledLine({ label, children, muted = false }: { label: string; childr
   );
 }
 
+function LabeledText({ label, text, muted = false }: { label: string; text?: string; muted?: boolean }) {
+  const lines = (text ?? '')
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  if (!lines.length) return null;
+  return (
+    <div className={muted ? 'text-gray-700' : undefined}>
+      {lines.map((line, index) => (
+        <p key={`${label}-${line}-${index}`}>
+          {index === 0 && <span className="font-semibold">{label}: </span>}
+          <RichText text={line} />
+        </p>
+      ))}
+    </div>
+  );
+}
+
 function Bullets({ items }: { items?: string[] }) {
   const valid = (items ?? []).map((item) => item.trim()).filter(Boolean);
   if (!valid.length) return null;
@@ -136,7 +154,7 @@ function renderSection(resume: ResumeDocument, module: ResumeModule) {
       return <ExperienceList items={c.work} />;
     case 'project':
       return (
-        <>
+        <div className="space-y-1.5">
           {(c.projects ?? []).map((project) => (
             <div key={project.id} className="print-safe">
               <div className="flex justify-between gap-4 font-semibold">
@@ -148,16 +166,13 @@ function renderSection(resume: ResumeDocument, module: ResumeModule) {
                   {project.techStack}
                 </LabeledLine>
               )}
-              {project.description && (
-                <LabeledLine label="项目内容">
-                  <RichText text={project.description} />
-                </LabeledLine>
-              )}
+              <LabeledText label="项目背景" text={project.background} />
+              <LabeledText label="项目职责" text={project.description} />
               {project.highlights?.filter(Boolean).length ? <p className="font-semibold">项目成果:</p> : null}
               <Bullets items={project.highlights} />
             </div>
           ))}
-        </>
+        </div>
       );
     case 'award':
       return (
