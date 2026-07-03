@@ -225,7 +225,7 @@ export function EditorPage() {
       <Modal open={importOpen} title="一键导入简历" onClose={() => setImportOpen(false)}>
         <div className="space-y-4">
           <p className="text-sm leading-6 text-muted">
-            上传 PDF 会在浏览器本地解析文字，不会上传到后端。你也可以粘贴已有简历文本，系统会尽量识别基础信息、职业技能、实习经历、工作经历、自我评价等内容。只有点击导入后才会更新当前简历。
+            支持上传 PDF 或 .txt，也可以直接粘贴简历文本。PDF 会在浏览器本地解析文字，不会上传到后端；系统会尽量识别基础信息、职业技能、项目经历、实习经历、工作经历、自我评价等内容。只有点击导入后才会更新当前简历。
           </p>
           <Textarea
             className="min-h-72"
